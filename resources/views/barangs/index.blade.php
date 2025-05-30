@@ -92,6 +92,23 @@
 @endsection
 
 @section('content')
+<div class="container py-4" style="text-align: center;">
+  <h1>
+    Hai, 
+    <span style="
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+    ">
+      {{ auth()->user()->name }}
+    </span>!
+  </h1>
+  <p>Selamat datang di sistem inventaris Anda.</p>
+</div>
+
+
 <div class="container py-4">
   <div class="gradient-card mb-4">
     <div class="d-flex justify-content-between align-items-center mb-3">

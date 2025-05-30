@@ -1,42 +1,92 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>@yield('title', 'Inventory App')</title>
+    <meta charset="UTF-8">
+    <title>@yield('title', 'Dashboard')</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Bootstrap & Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    
+    @yield('styles')
 
-  <!-- Google Fonts Inter -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+    <style>
+        body {
+            display: flex;
+            min-height: 100vh;
+            margin: 0;
+        }
 
-  <!-- Bootstrap 5 CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+        .sidebar {
+            width: 240px;
+            background: linear-gradient(to right, rgb(43, 7, 81), rgb(10, 31, 67));
+            color: white;
+            position: fixed;
+            height: 100%;
+            top: 0;
+            left: 0;
+            padding: 1.5rem;
+        }
 
-  @yield('styles')
+        .main-content {
+            margin-left: 240px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding: 2rem;
+            background-color: #f8f9fa;
+        }
 
-  <style>
-    /* Set default font family to Inter */
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-        Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
-      background-color: white !important;
-      color: #333;
-    }
-  </style>
+        .content-wrapper {
+            flex: 1;
+        }
+
+        .sidebar a, .sidebar button {
+            display: block;
+            text-align: left;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+
+        .sidebar a:hover, .sidebar button:hover {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+        }
+
+        footer {
+            text-align: center;
+            color: #6c757d;
+            font-size: 0.875rem;
+            padding-top: 1rem;
+            border-top: 1px solid #dee2e6;
+            margin-top: 2rem;
+        }
+    </style>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm mb-4">
-  <div class="container">
-    <a class="navbar-brand fw-bold" href="#"></a>
-  </div>
-</nav>
 
-  <main>
-    @yield('content')
-  </main>
+    @auth
+        @include('partials.sidebar')
+    @endauth
 
-  <!-- Bootstrap JS Bundle (Popper + JS) -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <div class="main-content">
+        <div class="content-wrapper">
+            @yield('content')
+        </div>
 
-  @yield('scripts')
+        <footer>
+            &copy; {{ date('Y') }} Sistem Inventaris • XI PPLG 2 
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 </html>

@@ -17,5 +17,13 @@ class AdminSeeder extends Seeder
                 'password' => Hash::make('password123'), // ubah kalau mau password lain
             ]
         );
+
+        User::updateOrCreate(
+            ['email' => 'admin2@example.com'],
+            [
+                'name' => 'Admin 2',
+                'password' => Hash::make('admin123'), // password untuk admin kedua
+            ]
+        );
     }
 }
